@@ -1,0 +1,11 @@
+---
+
+- name: Update
+  hosts: linux-servers
+  tasks:
+    - name: Packages Update
+      apt:
+        update_cache: yes
+    - name: Packages Upgrade
+      apt:
+        upgrade: "safe"
