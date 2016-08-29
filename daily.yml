@@ -1,7 +1,35 @@
 ---
 
-- name: Update
+- name: be sure basic packages are up to date
   hosts: linux-servers
   tasks:
-    - name: Packages Update
+    - name: packages update
       dnf: name=* state=latest
+    # - name: rpmfusion free repository
+    #   dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm state=present disable_gpg_check=yes
+    # - name: rpmfusion nonfree repository
+    #   dnf: name=http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm disable_gpg_check=yes
+    - name: ansible packages
+      dnf: name=libselinux-python state=latest
+
+- name: be sure zsh is installed and configured
+  hosts: linux-servers
+  tasks:
+    - name: zsh package
+      dnf: name=zsh state=latest
+    - name: zsh configuration file
+      copy: src=zshrc dest=/home/tvuillemin/.zshrc owner=tvuillemin
+    - name: zsh as default shell
+      user: name=tvuillemin state=present shell=/usr/bin/zsh
+
+- name: be sure steam is installed
+  hosts: gameserver
+  tasks:
+    - name: steam package
+      dnf: name=steam state=latest
+    - name: steam command line tool
+      copy: src=steamcmd/ dest=/opt/steamcmd
+    - name: steam command line tool permissions
+      file: path=/opt/steamcmd/steamcmd.sh mode=0777
+    - name: steam command line resources permissions
+      file: path=/opt/steamcmd/linux32/steamcmd mode=0777
