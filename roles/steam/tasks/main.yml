@@ -1,0 +1,11 @@
+- name: steam package is installed
+  dnf: name=steam state=latest
+
+- name: steam command line tool is copied
+  copy: src=steamcmd/ dest=/opt/steamcmd
+
+- name: steam command line tool is executable
+  file: path=/opt/steamcmd/steamcmd.sh mode=0777
+
+- name: steam command line resources permissions are set
+  file: path=/opt/steamcmd/linux32/steamcmd mode=0777

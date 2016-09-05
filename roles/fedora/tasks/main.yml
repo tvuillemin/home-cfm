@@ -1,0 +1,34 @@
+---
+
+- name: installed packages are up-to-date
+  dnf: name=* state=latest
+
+# - name: rpmfusion free repository is enabled
+#   dnf: name=http://download1.rpmfusion.org/free/fedora/rpmfusion-free-release-stable.noarch.rpm state=present disable_gpg_check=yes
+
+# - name: rpmfusion nonfree repository is enabled
+#   dnf: name=http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm disable_gpg_check=yes
+
+- name: ansible utility packages are installed
+  dnf: name=libselinux-python state=latest
+
+- name: zsh is installed
+  dnf: name=zsh state=latest
+
+- name: zsh is configured
+  copy: src=zshrc dest=/home/tvuillemin/.zshrc owner=tvuillemin
+
+- name: zsh is the default shell
+  user: name=tvuillemin state=present shell=/usr/bin/zsh
+
+# - name: be sure steam is installed
+#   hosts: gameserver
+#   tasks:
+#     - name: steam package
+#       dnf: name=steam state=latest
+#     - name: steam command line tool
+#       copy: src=steamcmd/ dest=/opt/steamcmd
+#     - name: steam command line tool permissions
+#       file: path=/opt/steamcmd/steamcmd.sh mode=0777
+#     - name: steam command line resources permissions
+#       file: path=/opt/steamcmd/linux32/steamcmd mode=0777

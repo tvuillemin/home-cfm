@@ -1,0 +1,7 @@
+---
+- name: be sure basic packages are up to date
+  hosts:
+      - all
+  roles:
+      - fedora
+      - steam
