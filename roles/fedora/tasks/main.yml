@@ -21,14 +21,11 @@
 - name: zsh is the default shell
   user: name=tvuillemin state=present shell=/usr/bin/zsh
 
-# - name: be sure steam is installed
-#   hosts: gameserver
-#   tasks:
-#     - name: steam package
-#       dnf: name=steam state=latest
-#     - name: steam command line tool
-#       copy: src=steamcmd/ dest=/opt/steamcmd
-#     - name: steam command line tool permissions
-#       file: path=/opt/steamcmd/steamcmd.sh mode=0777
-#     - name: steam command line resources permissions
-#       file: path=/opt/steamcmd/linux32/steamcmd mode=0777
+- name: vim is installed
+  dnf: name=vim state=latest
+
+- name: vim is configured
+  copy: src=vimrc dest=/home/tvuillemin/.vimrc owner=tvuillemin
+
+- name: htop is installed
+  dnf: name=htop state=latest
