@@ -1,7 +1,10 @@
 ---
-- name: be sure basic packages are up to date
-  hosts:
-      - all
+- name: BASICS
+  hosts: all
   roles:
       - fedora
+
+- name: GAMING
+  hosts: gameserver
+  roles:
       - steam
