@@ -8,3 +8,10 @@
   hosts: gameserver
   roles:
       - steam
+
+- name: MEDIA
+  hosts: mediaserver
+  roles:
+      - dlna
+      - smb
+      - torrent
