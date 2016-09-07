@@ -1,0 +1,4 @@
+---
+
+- name: samba is installed
+  dnf: name=samba state=latest
