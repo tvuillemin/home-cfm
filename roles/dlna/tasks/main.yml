@@ -1,0 +1,4 @@
+---
+
+- name: minidlna is installed
+  dnf: name=minidlna state=latest
