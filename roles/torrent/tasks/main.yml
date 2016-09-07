@@ -1,0 +1,4 @@
+---
+
+- name: transmission is installed
+  dnf: name=transmission-daemon state=latest
