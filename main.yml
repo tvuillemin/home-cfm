@@ -2,16 +2,16 @@
 - name: BASICS
   hosts: all
   roles:
-      - fedora
+    - fedora
 
 - name: GAMING
   hosts: gameserver
   roles:
-      - steam
+    - steam
 
 - name: MEDIA
   hosts: mediaserver
   roles:
-      - dlna
-      - smb
-      - torrent
+    - dlna
+    - smb
+    - torrent
