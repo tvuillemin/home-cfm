@@ -2,3 +2,11 @@
 
 - name: transmission is installed
   dnf: name=transmission-daemon state=latest
+
+- name: transmission is configured
+  copy: src=settings.json dest=/var/lib/transmission/.config/transmission-daemon/
+  notify:
+    - restart transmission
+
+- name: transmission is started and enabled
+  systemd: name=transmission-daemon state=started
