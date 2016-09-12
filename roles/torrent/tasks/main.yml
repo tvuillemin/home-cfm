@@ -9,4 +9,4 @@
     - restart transmission
 
 - name: transmission is started and enabled
-  systemd: name=transmission-daemon state=started
+  systemd: name=transmission-daemon state=started enabled=yes
