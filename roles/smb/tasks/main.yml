@@ -1,4 +1,15 @@
 ---
 
+- name: external USB drive is mounted
+  mount: name=/mnt/usb src=/dev/sdb1 fstype=ntfs state=present
+
 - name: samba is installed
   dnf: name=samba state=latest
+
+- name: samba is configured
+  copy: src=smb.conf dest=/etc/samba/
+  notify:
+    - restart samba
+
+- name: samba is started and enabled
+  systemd: name=smb state=started enabled=yes
