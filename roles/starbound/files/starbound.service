@@ -1,11 +1,8 @@
 [Unit]
-Description=service_description
+Description=Starbound dedicated server
 After=network.target
 
 [Service]
-ExecStart=path_to_executable
-Type=forking
-PIDFile=path_to_pidfile
-
-[Install]
-WantedBy=default.target
+ExecStart=/opt/starbound/linux/starbound_server
+WorkingDirectory=/opt/starbound/linux/
+PIDFile=/var/run/starbound.pid

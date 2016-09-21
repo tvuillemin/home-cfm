@@ -1,11 +1,9 @@
+---
 - name: steam package is installed
   dnf: name=steam state=latest
 
-- name: steam command line tool is copied
-  copy: src=steamcmd/ dest=/opt/steamcmd
+- name: steamcmd directory exists
+  file: path=/opt/steamcmd state=directory
 
-- name: steam command line tool is executable
-  file: path=/opt/steamcmd/steamcmd.sh mode=0777
-
-- name: steam command line resources permissions are set
-  file: path=/opt/steamcmd/linux32/steamcmd mode=0777
+- name: steamcmd archive is extracted
+  unarchive: src=https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz dest=/opt/steamcmd remote_src=yes
