@@ -7,7 +7,7 @@
 - name: GAMING
   hosts: gameserver
   roles:
-    - steam
+    - starbound
 
 - name: MEDIA
   hosts: mediaserver
