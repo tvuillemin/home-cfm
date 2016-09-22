@@ -10,7 +10,10 @@
 #   dnf: name=http://download1.rpmfusion.org/nonfree/fedora/rpmfusion-nonfree-release-stable.noarch.rpm disable_gpg_check=yes
 
 - name: ansible utility packages are installed
-  dnf: name=libselinux-python state=latest
+  dnf: name={{ item }} state=latest
+  with_items:
+    - libselinux-python
+    - python-firewall
 
 - name: zsh is installed
   dnf: name=zsh state=latest
@@ -29,3 +32,6 @@
 
 - name: htop is installed
   dnf: name=htop state=latest
+
+- name: firewall is started
+  systemd: name=firewalld state=started enabled=yes

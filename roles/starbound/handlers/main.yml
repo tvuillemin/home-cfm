@@ -1,0 +1,4 @@
+---
+
+- name: restart starbound
+  systemd: name=starbound state=restarted daemon_reload=yes
