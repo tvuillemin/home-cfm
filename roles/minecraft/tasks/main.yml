@@ -1,0 +1,6 @@
+---
+- name: mcmyadmin port is open
+  firewalld: port=8080/tcp state=enabled permanent=true
+
+- name: minecraft port is open
+  firewalld: port=25565/tcp state=enabled permanent=true
