@@ -4,3 +4,11 @@
 
 - name: minecraft port is open
   firewalld: port=25565/tcp state=enabled permanent=true
+
+- name: minecraft service is installed
+  copy: src=minecraft.service dest=/etc/systemd/system/minecraft.service
+  notify:
+    - restart minecraft
+
+- name: minecraft service is started
+  systemd: name=minecraft state=started enabled=yes

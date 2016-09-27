@@ -1,0 +1,8 @@
+[Unit]
+Description=Minecraft dedicated server
+After=network.target
+
+[Service]
+ExecStart=/opt/McMyAdmin/MCMA2_Linux_x86_64
+WorkingDirectory=/opt/McMyAdmin/
+PIDFile=/var/run/minecraft.pid
