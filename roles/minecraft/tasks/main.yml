@@ -1,14 +1,62 @@
 ---
-- name: mcmyadmin port is open
-  firewalld: port=8080/tcp state=enabled permanent=true
+- name: minecraft server port is open
+  firewalld:
+        port: 25565/tcp
+        state: enabled
+        permanent: true
 
-- name: minecraft port is open
-  firewalld: port=25565/tcp state=enabled permanent=true
+- name: minecraft user exists
+  user:
+        name: minecraft
+        group: daemon
+        shell: /usr/bin/bash
+
+- name: minecraft server directory exists
+  file:
+        path: /opt/minecraft
+        state: directory
+
+- name: minecraft server is downloaded
+  get_url:
+        url: https://s3.amazonaws.com/Minecraft.Download/versions/1.10.2/minecraft_server.1.10.2.jar
+        dest: /opt/minecraft/minecraft_server.jar
+  register: download_task
+
+- name: minecraft world is manually sent
+  pause:
+        prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
+  when: download_task|changed
+
+- name: minecraft start script is installed
+  copy:
+        src: start_minecraft.sh
+        dest: /opt/minecraft/start_minecraft.sh
+  notify:
+        - restart minecraft
+
+- name: minecraft start script is executable
+  file:
+        path: /opt/minecraft/start_minecraft.sh
+        mode: "u+x"
+
+- name: minecraft directory belongs to a dedicated owner
+  file:
+        path: /opt/minecraft
+        owner: minecraft
+        group: daemon
+        recurse: yes
 
 - name: minecraft service is installed
-  copy: src=minecraft.service dest=/etc/systemd/system/minecraft.service
+  copy:
+        src: minecraft.service
+        dest: /etc/systemd/system/minecraft.service
   notify:
-    - restart minecraft
+        - restart minecraft
+
+- meta: flush_handlers
 
 - name: minecraft service is started
-  systemd: name=minecraft state=started enabled=yes
+  systemd:
+        name: minecraft
+        state: started
+        enabled: yes
