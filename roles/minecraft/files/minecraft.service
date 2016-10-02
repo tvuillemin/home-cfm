@@ -1,8 +1,12 @@
 [Unit]
 Description=Minecraft dedicated server
+Wants=network.target
 After=network.target
 
 [Service]
-ExecStart=/opt/McMyAdmin/MCMA2_Linux_x86_64
-WorkingDirectory=/opt/McMyAdmin/
+ExecStart=/opt/minecraft/start_minecraft.sh
+WorkingDirectory=/opt/minecraft
 PIDFile=/var/run/minecraft.pid
+
+[Install]
+WantedBy=multi-user.target
