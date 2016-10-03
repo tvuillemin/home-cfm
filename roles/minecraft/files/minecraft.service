@@ -6,7 +6,6 @@ After=network.target
 [Service]
 ExecStart=/opt/minecraft/start_minecraft.sh
 WorkingDirectory=/opt/minecraft
-PIDFile=/var/run/minecraft.pid
 
 [Install]
 WantedBy=multi-user.target

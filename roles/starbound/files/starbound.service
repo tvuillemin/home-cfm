@@ -1,8 +1,11 @@
 [Unit]
 Description=Starbound dedicated server
+Wants=network.target
 After=network.target
 
 [Service]
 ExecStart=/opt/starbound/linux/starbound_server
 WorkingDirectory=/opt/starbound/linux/
-PIDFile=/var/run/starbound.pid
+
+[Install]
+WantedBy=multi-user.target
