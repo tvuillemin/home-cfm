@@ -1,4 +1,7 @@
 ---
-
 - name: restart transmission
-  systemd: name=transmission-daemon state=restarted daemon-reload=yes
+  systemd:
+        name: transmission-daemon
+        state: restarted daemon
+        reload: yes
+...
