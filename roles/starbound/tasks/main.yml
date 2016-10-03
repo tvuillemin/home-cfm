@@ -1,16 +1,27 @@
 ---
 - name: starbound port is open
-  firewalld: port=21025/tcp state=enabled permanent=true
+  firewalld:
+        port: 21025/tcp
+        state: enabled
+        permanent: true
 
 - name: starbound server is up to date
   command: /opt/steamcmd/steamcmd.sh +login {{ steam_login }} '{{ steam_password }}' +force_install_dir /opt/starbound +app_update 211820 validate +quit
   notify:
-    - restart starbound
+        - restart starbound
 
 - name: starbound service is installed
-  copy: src=starbound.service dest=/etc/systemd/system/starbound.service
+  copy:
+        src: starbound.service
+        dest: /etc/systemd/system/starbound.service
   notify:
-    - restart starbound
+        - restart starbound
+
+- meta: flush_handlers
 
 - name: starbound service is started
-  systemd: name=starbound state=started enabled=yes
+  systemd:
+        name: starbound
+        state: started
+        enabled: yes
+...

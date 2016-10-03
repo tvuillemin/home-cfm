@@ -1,4 +1,7 @@
 ---
-
 - name: restart minecraft
-  systemd: name=minecraft state=restarted daemon_reload=yes
+  systemd:
+        name: minecraft
+        state: restarted
+        daemon_reload: yes
+...

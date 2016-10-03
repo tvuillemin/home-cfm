@@ -1,12 +1,21 @@
 ---
-
 - name: transmission is installed
-  dnf: name=transmission-daemon state=latest
+  dnf:
+        name: transmission-daemon
+        state: latest
 
 - name: transmission is configured
-  copy: src=settings.json dest=/var/lib/transmission/.config/transmission-daemon/
+  copy:
+        src: settings.json
+        dest: /var/lib/transmission/.config/transmission-daemon/
   notify:
-    - restart transmission
+        - restart transmission
+
+- meta: flush_handlers
 
 - name: transmission is started and enabled
-  systemd: name=transmission-daemon state=started enabled=yes
+  systemd:
+        name: transmission-daemon
+        state: started
+        enabled: yes
+...

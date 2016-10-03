@@ -1,4 +1,7 @@
 ---
-
 - name: restart samba
-  systemd: name=smb state=restarted daemon-reload=yes
+  systemd:
+        name: smb
+        state: restarted
+        daemon-reload: yes
+...

@@ -1,14 +1,24 @@
 ---
 - name: steam package is installed
-  dnf: name=steam state=latest
+  dnf:
+        name: steam
+        state: latest
 
 - name: steamcmd directory exists
-  file: path=/opt/steamcmd state=directory
+  file:
+        path: /opt/steamcmd
+        state: directory
 
 - name: steamcmd archive is downloaded
-  get_url: url=https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz dest=/opt/steamcmd.tgz
+  get_url:
+        url: https://steamcdn-a.akamaihd.net/client/installer/steamcmd_linux.tar.gz
+        dest: /opt/steamcmd.tgz
   register: archive
 
 - name: steamcmd archive is extracted
-  unarchive: src=/opt/steamcmd.tgz dest=/opt/steamcmd remote_src=yes
+  unarchive:
+        src: /opt/steamcmd.tgz
+        dest: /opt/steamcmd
+        remote_src: yes
   when: archive|changed
+...
