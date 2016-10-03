@@ -2,17 +2,21 @@
 - name: BASICS
   hosts: all
   roles:
-    - fedora
+        - role: fedora
+          tags: ['fedora']
 
 - name: GAMING
   hosts: gameserver
   roles:
-    - { role: minecraft, tags: [ 'minecraft' ] }
-    - starbound
+        - role: minecraft
+          tags: ['minecraft']
+        - role: starbound
+          tags: ['starbound']
 
 - name: MEDIA
   hosts: mediaserver
   roles:
-    - dlna
-    - smb
-    - torrent
+        - dlna
+        - smb
+        - torrent
+...
