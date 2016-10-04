@@ -2,8 +2,8 @@
 - name: BASICS
   hosts: all
   roles:
-        - role: fedora
-          tags: ['fedora']
+        - role: centos
+          tags: ['centos']
 
 - name: GAMING
   hosts: gameserver
