@@ -32,6 +32,20 @@
         prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
   when: download_task|changed
 
+- name: minecraft server properties is up to date
+  copy:
+        src: server.properties
+        dest: /opt/minecraft/server.properties
+  notify:
+        - restart minecraft
+
+- name: minecraft eula is set to true
+  copy:
+        src: eula.txt
+        dest: /opt/minecraft/eula.txt
+  notify:
+        - restart minecraft
+
 - name: minecraft start script is installed
   copy:
         src: start_minecraft.sh
