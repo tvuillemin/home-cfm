@@ -9,6 +9,12 @@
   command: /opt/steamcmd/steamcmd.sh +login {{ steam_login }} '{{ steam_password }}' +force_install_dir /opt/starbound +app_update 211820 validate +quit
   notify:
         - restart starbound
+  register: update_task
+
+- name: starbound universe is manually sent
+  pause:
+        prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
+  when: update_task|changed
 
 - name: starbound service is installed
   copy:
