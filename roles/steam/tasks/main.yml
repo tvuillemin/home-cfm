@@ -1,6 +1,6 @@
 ---
 - name: steam package is installed
-  dnf:
+  yum:
         name: steam
         state: latest
 
