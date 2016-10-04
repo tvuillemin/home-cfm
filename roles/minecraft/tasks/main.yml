@@ -1,4 +1,9 @@
 ---
+- name: java is installed
+  yum:
+        name: java-1.8.0-openjdk
+        state: latest
+
 - name: minecraft server port is open
   firewalld:
         port: 25565/tcp
