@@ -1,6 +1,4 @@
 ---
-# - include: rpmfusion.yml
-
 - name: EPEL repository is enabled
   yum_repository:
         name: epel
@@ -71,4 +69,7 @@
         name: firewalld
         state: started
         enabled: yes
+
+- name: firewall default zone is attached to the main network interface
+  command: firewall-cmd --zone=public --change-interface=eth0
 ...

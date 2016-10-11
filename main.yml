@@ -1,10 +1,4 @@
 ---
-- name: BASICS
-  hosts: all
-  roles:
-        - role: centos
-          tags: ['centos']
-
 - name: GAMING
   hosts: gameserver
   roles:
@@ -13,10 +7,10 @@
         - role: starbound
           tags: ['starbound']
 
-- name: MEDIA
-  hosts: mediaserver
-  roles:
-        - dlna
-        - smb
-        - torrent
+# - name: MEDIA
+#   hosts: mediaserver
+#   roles:
+#         - dlna
+#         - smb
+#         - torrent
 ...
