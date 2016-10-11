@@ -27,7 +27,6 @@
         name: '{{ item }}'
         state: latest
   with_items:
-        # - libselinux-python
         - firewalld
         - python-pip
 
