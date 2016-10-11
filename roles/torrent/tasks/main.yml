@@ -1,6 +1,6 @@
 ---
 - name: transmission is installed
-  dnf:
+  yum:
         name: transmission-daemon
         state: latest
 

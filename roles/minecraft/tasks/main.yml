@@ -1,9 +1,16 @@
 ---
+- name: java is installed
+  yum:
+        name: java-1.8.0-openjdk
+        state: latest
+
 - name: minecraft server port is open
   firewalld:
+        zone: public
         port: 25565/tcp
         state: enabled
         permanent: true
+        immediate: true
 
 - name: minecraft user exists
   user:
@@ -26,6 +33,20 @@
   pause:
         prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
   when: download_task|changed
+
+- name: minecraft server properties is up to date
+  copy:
+        src: server.properties
+        dest: /opt/minecraft/server.properties
+  notify:
+        - restart minecraft
+
+- name: minecraft eula is set to true
+  copy:
+        src: eula.txt
+        dest: /opt/minecraft/eula.txt
+  notify:
+        - restart minecraft
 
 - name: minecraft start script is installed
   copy:

@@ -1,21 +1,36 @@
 ---
-- include: rpmfusion.yml
+- name: EPEL repository is enabled
+  yum_repository:
+        name: epel
+        description: Extra Packages for Enterprise Linux
+        baseurl: http://download.fedoraproject.org/pub/epel/$releasever/$basearch/
+
+- name: RPM Fusion free repository is enabled
+  yum:
+        name: https://download1.rpmfusion.org/free/el/updates/6/i386/rpmfusion-free-release-6-1.noarch.rpm
+        disable_gpg_check: yes
+        state: present
+
+- name: RPM Fusion non-free repository is enabled
+  yum:
+        name: https://download1.rpmfusion.org/nonfree/el/updates/6/i386/rpmfusion-nonfree-release-6-1.noarch.rpm
+        disable_gpg_check: yes
+        state: present
 
 - name: installed packages are up-to-date
-  dnf:
+  yum:
         name: '*'
         state: latest
 
 - name: ansible utility packages are installed
-  dnf:
+  yum:
         name: '{{ item }}'
         state: latest
   with_items:
-        - libselinux-python
-        - python-firewall
+        - firewalld
 
 - name: zsh is installed
-  dnf:
+  yum:
         name: zsh
         state: latest
 
@@ -32,7 +47,7 @@
         shell: /usr/bin/zsh
 
 - name: vim is installed
-  dnf:
+  yum:
         name: vim
         state: latest
 
@@ -43,7 +58,7 @@
         owner: tvuillemin
 
 - name: htop is installed
-  dnf:
+  yum:
         name: htop
         state: latest
 
@@ -52,4 +67,7 @@
         name: firewalld
         state: started
         enabled: yes
+
+- name: firewall default zone is attached to the main network interface
+  command: firewall-cmd --permanent --zone=public --change-interface=eth0
 ...

@@ -1,8 +1,12 @@
 ---
-- name: steam package is installed
-  dnf:
-        name: steam
+- name: steam dependencies are installed
+  yum:
+        name: '{{ item }}'
         state: latest
+  with_items:
+        - libgcc.x86_64
+        - libgcc.i686
+        - glibc.i686
 
 - name: steamcmd directory exists
   file:
