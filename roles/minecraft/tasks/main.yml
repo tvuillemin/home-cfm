@@ -6,9 +6,11 @@
 
 - name: minecraft server port is open
   firewalld:
+        zone: public
         port: 25565/tcp
         state: enabled
         permanent: true
+        immediate: true
 
 - name: minecraft user exists
   user:

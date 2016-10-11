@@ -28,7 +28,6 @@
         state: latest
   with_items:
         - firewalld
-        - python-pip
 
 - name: zsh is installed
   yum:
@@ -70,5 +69,5 @@
         enabled: yes
 
 - name: firewall default zone is attached to the main network interface
-  command: firewall-cmd --zone=public --change-interface=eth0
+  command: firewall-cmd --permanent --zone=public --change-interface=eth0
 ...
