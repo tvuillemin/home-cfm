@@ -7,3 +7,7 @@ prompt adam2
 HISTSIZE=1000
 SAVEHIST=1000
 HISTFILE=~/.history
+
+bindkey  "^[[3~"  delete-char
+bindkey  "^[[H"   beginning-of-line
+bindkey  "^[[F"   end-of-line

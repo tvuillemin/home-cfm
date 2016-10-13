@@ -1,0 +1,44 @@
+---
+- name: tools are installed
+  yum:
+        name: '{{ item }}'
+        state: latest
+  with_items:
+        - zsh
+        - vim
+        - htop
+        - lsof
+        - cockpit
+
+- name: zsh is configured
+  copy:
+        src: zshrc
+        dest: /home/tvuillemin/.zshrc
+        owner: tvuillemin
+
+- name: zsh is the default shell
+  user:
+        name: tvuillemin
+        state: present
+        shell: /usr/bin/zsh
+
+- name: vim is configured
+  copy:
+        src: vimrc
+        dest: /home/tvuillemin/.vimrc
+        owner: tvuillemin
+
+- name: cockpit port is open
+  firewalld:
+        zone: public
+        port: 9090/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+- name: cockpit is started and enabled
+  systemd:
+        name: cockpit
+        state: started
+        enabled: yes
+...
