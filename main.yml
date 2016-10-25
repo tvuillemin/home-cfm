@@ -6,6 +6,8 @@
           tags: ['minecraft']
         - role: starbound
           tags: ['starbound']
+        - role: mumble
+          tags: ['mumble', 'murmur']
 
 # - name: MEDIA
 #   hosts: mediaserver
