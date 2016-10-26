@@ -1,0 +1,7 @@
+---
+- name: restart dont starve
+  systemd:
+        name: dontstarve
+        state: restarted
+        daemon_reload: yes
+...

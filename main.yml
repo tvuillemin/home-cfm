@@ -2,6 +2,8 @@
 - name: GAMING
   hosts: gameserver
   roles:
+        - role: dontstarve
+          tags: ['dontstarve']
         - role: minecraft
           tags: ['minecraft']
         - role: starbound
