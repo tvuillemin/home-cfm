@@ -50,6 +50,21 @@
   notify:
         - restart minecraft
 
+- name: pvp is enabled
+  lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^pvp=
+        line: pvp=true
+  notify:
+        - restart minecraft
+
+- name: white list is downloaded
+  copy:
+        src: whitelist.json
+        dest: /opt/minecraft/whitelist.json
+  notify:
+        - restart minecraft
+
 - name: eula is set to true
   copy:
         src: eula.txt
