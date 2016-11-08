@@ -58,10 +58,41 @@
   notify:
         - restart minecraft
 
+- name: rcon is enabled
+  lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^enable-rcon=
+        line: enable-rcon=true
+  notify:
+        - restart minecraft
+
+- name: rcon password is set
+  lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^rcon.password=
+        line: rcon.password=59228454
+  notify:
+        - restart minecraft
+
+- name: white list is enabled
+  lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^white-list=
+        line: white-list=true
+  notify:
+        - restart minecraft
+
 - name: white list is downloaded
   copy:
         src: whitelist.json
         dest: /opt/minecraft/whitelist.json
+  notify:
+        - restart minecraft
+
+- name: OP list is downloaded
+  copy:
+        src: ops.json
+        dest: /opt/minecraft/ops.json
   notify:
         - restart minecraft
 
