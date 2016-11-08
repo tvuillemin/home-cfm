@@ -1,7 +1,36 @@
 ---
+- name: transmission port is open
+  firewalld:
+        zone: public
+        port: 9091/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+- name: http service is open
+  firewalld:
+        zone: public
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+
+- name: http port is open
+  firewalld:
+        zone: public
+        port: 80/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
 - name: transmission is installed
   yum:
         name: transmission-daemon
+        state: latest
+
+- name: lighttpd is installed
+  yum:
+        name: lighttpd
         state: latest
 
 - name: transmission is configured
