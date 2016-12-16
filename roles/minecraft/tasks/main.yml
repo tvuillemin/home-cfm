@@ -1,138 +1,93 @@
 ---
-- name: java is installed
-  yum:
+-   name: java is installed
+    yum:
         name: java-1.8.0-openjdk
         state: latest
 
-- name: port is open
-  firewalld:
+-   name: port is open
+    firewalld:
         zone: public
         port: 25565/tcp
         state: enabled
         permanent: true
         immediate: true
 
-- name: dedicated user exists
-  user:
+-   name: dedicated user exists
+    user:
         name: minecraft
         group: daemon
         shell: /usr/bin/bash
 
-- name: directory exists
-  file:
+-   name: directory exists
+    file:
         path: /opt/minecraft
         state: directory
 
-- name: server is downloaded
-  get_url:
+-   name: server is downloaded
+    get_url:
         url: https://s3.amazonaws.com/Minecraft.Download/versions/1.10.2/minecraft_server.1.10.2.jar
         dest: /opt/minecraft/minecraft_server.jar
-  register: download_task
+    register: download_task
 
-- name: transfer the world manually
-  pause:
+-   name: transfer the world manually
+    pause:
         prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
-  when: download_task|changed
+    when: download_task|changed
 
-- name: online mode is set to false
-  lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^online-mode=
-        line: online-mode=true
-  notify:
-        - restart minecraft
+-   include: server_properties.yml
 
-- name: difficulty is set to easy
-  lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^difficulty=
-        line: difficulty=1
-  notify:
-        - restart minecraft
-
-- name: pvp is enabled
-  lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^pvp=
-        line: pvp=true
-  notify:
-        - restart minecraft
-
-- name: rcon is enabled
-  lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^enable-rcon=
-        line: enable-rcon=true
-  notify:
-        - restart minecraft
-
-- name: rcon password is set
-  lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^rcon.password=
-        line: rcon.password=59228454
-  notify:
-        - restart minecraft
-
-- name: white list is enabled
-  lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^white-list=
-        line: white-list=false
-  notify:
-        - restart minecraft
 #
-# - name: white list is downloaded
-#   copy:
+# -   name: white list is downloaded
+#     copy:
 #         src: whitelist.json
 #         dest: /opt/minecraft/whitelist.json
 #   notify:
 #         - restart minecraft
 #
-# - name: OP list is downloaded
-#   copy:
+# -   name: OP list is downloaded
+#     copy:
 #         src: ops.json
 #         dest: /opt/minecraft/ops.json
 #   notify:
 #         - restart minecraft
 
-- name: eula is set to true
-  copy:
+-   name: eula is set to true
+    copy:
         src: eula.txt
         dest: /opt/minecraft/eula.txt
-  notify:
+    notify:
         - restart minecraft
 
-- name: start script is installed
-  copy:
+-   name: start script is installed
+    copy:
         src: start_minecraft.sh
         dest: /opt/minecraft/start_minecraft.sh
-  notify:
+    notify:
         - restart minecraft
 
-- name: start script is executable
-  file:
+-   name: start script is executable
+    file:
         path: /opt/minecraft/start_minecraft.sh
         mode: "u+x"
 
-- name: directory belongs to the dedicated user
-  file:
+-   name: directory belongs to the dedicated user
+    file:
         path: /opt/minecraft
         owner: minecraft
         group: daemon
         recurse: yes
 
-- name: service is installed
-  copy:
+-   name: service is installed
+    copy:
         src: minecraft.service
         dest: /etc/systemd/system/minecraft.service
-  notify:
+    notify:
         - restart minecraft
 
-- meta: flush_handlers
+-   meta: flush_handlers
 
-- name: service is started
-  systemd:
+-   name: service is started
+    systemd:
         name: minecraft
         state: started
         enabled: yes
