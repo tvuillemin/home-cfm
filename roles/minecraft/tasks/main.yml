@@ -38,7 +38,7 @@
   lineinfile:
         dest: /opt/minecraft/server.properties
         regexp: ^online-mode=
-        line: online-mode=false
+        line: online-mode=true
   notify:
         - restart minecraft
 
@@ -78,23 +78,23 @@
   lineinfile:
         dest: /opt/minecraft/server.properties
         regexp: ^white-list=
-        line: white-list=true
+        line: white-list=false
   notify:
         - restart minecraft
-
-- name: white list is downloaded
-  copy:
-        src: whitelist.json
-        dest: /opt/minecraft/whitelist.json
-  notify:
-        - restart minecraft
-
-- name: OP list is downloaded
-  copy:
-        src: ops.json
-        dest: /opt/minecraft/ops.json
-  notify:
-        - restart minecraft
+#
+# - name: white list is downloaded
+#   copy:
+#         src: whitelist.json
+#         dest: /opt/minecraft/whitelist.json
+#   notify:
+#         - restart minecraft
+#
+# - name: OP list is downloaded
+#   copy:
+#         src: ops.json
+#         dest: /opt/minecraft/ops.json
+#   notify:
+#         - restart minecraft
 
 - name: eula is set to true
   copy:
