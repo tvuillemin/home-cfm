@@ -69,8 +69,8 @@
         - restart minecraft
 
 -   name: start script is installed
-    copy:
-        src: start_minecraft.sh
+    template:
+        src: start_minecraft.sh.j2
         dest: /opt/minecraft/start_minecraft.sh
         owner: minecraft
         group: daemon
