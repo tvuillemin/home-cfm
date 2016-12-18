@@ -27,8 +27,9 @@
 
 -   name: server is downloaded
     get_url:
-        url: https://s3.amazonaws.com/Minecraft.Download/versions/1.10.2/minecraft_server.1.10.2.jar
+        url: https://s3.amazonaws.com/Minecraft.Download/versions/1.11/minecraft_server.1.11.jar
         dest: /opt/minecraft/minecraft_server.jar
+        checksum: sha256:3277965fd83d26944dfbd1b9740d95cf206985da330a1b3733868e4de7dc6f83
         owner: minecraft
         group: daemon
     register: download_task
