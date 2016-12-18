@@ -43,7 +43,7 @@
     lineinfile:
         dest: /opt/minecraft/server.properties
         regexp: ^white-list=
-        line: white-list=false
+        line: white-list=true
     notify:
         - restart minecraft
 ...

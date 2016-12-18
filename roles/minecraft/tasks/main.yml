@@ -22,11 +22,15 @@
     file:
         path: /opt/minecraft
         state: directory
+        owner: minecraft
+        group: daemon
 
 -   name: server is downloaded
     get_url:
         url: https://s3.amazonaws.com/Minecraft.Download/versions/1.10.2/minecraft_server.1.10.2.jar
         dest: /opt/minecraft/minecraft_server.jar
+        owner: minecraft
+        group: daemon
     register: download_task
 
 -   name: transfer the world manually
@@ -36,25 +40,30 @@
 
 -   include: server_properties.yml
 
-#
-# -   name: white list is downloaded
-#     copy:
-#         src: whitelist.json
-#         dest: /opt/minecraft/whitelist.json
-#   notify:
-#         - restart minecraft
-#
-# -   name: OP list is downloaded
-#     copy:
-#         src: ops.json
-#         dest: /opt/minecraft/ops.json
-#   notify:
-#         - restart minecraft
+-   name: white list is downloaded
+    copy:
+        src: whitelist.json
+        dest: /opt/minecraft/whitelist.json
+        owner: minecraft
+        group: daemon
+    notify:
+        - restart minecraft
+
+-   name: OP list is downloaded
+    copy:
+        src: ops.json
+        dest: /opt/minecraft/ops.json
+        owner: minecraft
+        group: daemon
+    notify:
+        - restart minecraft
 
 -   name: eula is set to true
     copy:
         src: eula.txt
         dest: /opt/minecraft/eula.txt
+        owner: minecraft
+        group: daemon
     notify:
         - restart minecraft
 
@@ -62,6 +71,8 @@
     copy:
         src: start_minecraft.sh
         dest: /opt/minecraft/start_minecraft.sh
+        owner: minecraft
+        group: daemon
     notify:
         - restart minecraft
 
@@ -69,13 +80,8 @@
     file:
         path: /opt/minecraft/start_minecraft.sh
         mode: "u+x"
-
--   name: directory belongs to the dedicated user
-    file:
-        path: /opt/minecraft
         owner: minecraft
         group: daemon
-        recurse: yes
 
 -   name: service is installed
     copy:
