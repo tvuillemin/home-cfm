@@ -1,0 +1,49 @@
+---
+-   name: online mode is set to false
+    lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^online-mode=
+        line: online-mode=true
+    notify:
+        - restart minecraft
+
+-   name: difficulty is set to easy
+    lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^difficulty=
+        line: difficulty=1
+    notify:
+        - restart minecraft
+
+-   name: pvp is enabled
+    lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^pvp=
+        line: pvp=true
+    notify:
+        - restart minecraft
+
+-   name: rcon is enabled
+    lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^enable-rcon=
+        line: enable-rcon=true
+    notify:
+        - restart minecraft
+
+-   name: rcon password is set
+    lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^rcon.password=
+        line: rcon.password=59228454
+    notify:
+        - restart minecraft
+
+-   name: white list is enabled
+    lineinfile:
+        dest: /opt/minecraft/server.properties
+        regexp: ^white-list=
+        line: white-list=true
+    notify:
+        - restart minecraft
+...
