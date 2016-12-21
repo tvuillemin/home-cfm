@@ -8,7 +8,6 @@
         - vim
         - htop
         - lsof
-        - cockpit
 
 - name: zsh is configured
   copy:
@@ -27,18 +26,4 @@
         src: vimrc
         dest: /home/tvuillemin/.vimrc
         owner: tvuillemin
-
-- name: cockpit port is open
-  firewalld:
-        zone: public
-        port: 9090/tcp
-        state: enabled
-        permanent: true
-        immediate: true
-
-- name: cockpit is started and enabled
-  systemd:
-        name: cockpit
-        state: started
-        enabled: yes
 ...

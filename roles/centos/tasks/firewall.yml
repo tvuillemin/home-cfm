@@ -12,4 +12,5 @@
 
 - name: firewall default zone is attached to the main network interface
   command: firewall-cmd --permanent --zone=public --change-interface=eth0
+  changed_when: false
 ...
