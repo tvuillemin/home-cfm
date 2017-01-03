@@ -15,11 +15,11 @@
     notify:
         - restart minecraft
 
--   name: pvp is disabled
+-   name: pvp is enabled
     lineinfile:
         dest: /opt/minecraft/server.properties
         regexp: ^pvp=
-        line: pvp=false
+        line: pvp=true
     notify:
         - restart minecraft
 
