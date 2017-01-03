@@ -10,11 +10,4 @@
           tags: ['starbound']
         - role: mumble
           tags: ['mumble', 'murmur']
-
-# - name: MEDIA
-#   hosts: mediaserver
-#   roles:
-#         - dlna
-#         - smb
-#         - torrent
 ...

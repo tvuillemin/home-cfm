@@ -1,13 +1,42 @@
-autoload -Uz compinit promptinit
+# Terminal parameters
+export PATH="/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin"
+export TERM="xterm-256color"
+export EDITOR='vim'
+export LANG=en_GB.UTF-8
+autoload -U compinit
 compinit
-promptinit
 
-prompt adam2
+# Zsh general parameters
+CASE_SENSITIVE="true"
+COMPLETION_WAITING_DOTS="true"
+ENABLE_CORRECTION="false"
+HYPHEN_INSENSITIVE="true"
 
-HISTSIZE=1000
-SAVEHIST=1000
-HISTFILE=~/.history
+# Zsh history
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=10000000
+SAVEHIST=10000000
+HIST_STAMPS="yyyy-mm-dd"
+setopt INC_APPEND_HISTORY
+setopt SHARE_HISTORY
 
-bindkey  "^[[3~"  delete-char
-bindkey  "^[[H"   beginning-of-line
-bindkey  "^[[F"   end-of-line
+# Aliases
+alias ls="ls --color"
+alias ll="ls -l"
+alias gco="git checkout"
+alias ggui="gitg --all"
+alias gst="git status"
+alias psg="ps aux | grep -v grep | grep"
+alias sudo="sudo -E"
+alias svi="sudo vim"
+
+# Powerline Theme
+POWERLEVEL9K_MODE="awesome-patched"
+POWERLEVEL9K_PROMPT_ON_NEWLINE=true
+POWERLEVEL9K_CUSTOM_PROXY_STATUS="prompt_proxy"
+POWERLEVEL9K_SHOW_CHANGESET=true
+POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
+POWERLEVEL9K_TIME_FORMAT="%D{%Y-%m-%d \uf073 %H:%M}"
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(context dir)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(status time load ram)
+source  $HOME/powerlevel9k/powerlevel9k.zsh-theme

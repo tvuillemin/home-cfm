@@ -4,10 +4,17 @@
         name: '{{ item }}'
         state: latest
   with_items:
-        - zsh
-        - vim
+        - bc
         - htop
         - lsof
+        - vim
+        - zsh
+
+-   name: powerlevel9k is installed
+    copy:
+        src: powerlevel9k
+        dest: /home/tvuillemin/
+        owner: tvuillemin
 
 - name: zsh is configured
   copy:
