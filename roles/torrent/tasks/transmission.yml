@@ -12,14 +12,23 @@
         name: transmission-daemon
         state: latest
 
+-   name: check if the configuration needs to be updated
+    copy:
+        src: settings.json
+        dest: /var/lib/transmission/.config/transmission-daemon/
+    register: configuration_check
+
+-   name: service is stopped
+    systemd:
+        name: transmission-daemon
+        state: stopped
+    when: configuration_check|changed
+
 -   name: transmission is configured
     copy:
         src: settings.json
         dest: /var/lib/transmission/.config/transmission-daemon/
-    notify:
-        - restart transmission
-
--   meta: flush_handlers
+    when: configuration_check|changed
 
 -   name: service is started and enabled
     systemd:
