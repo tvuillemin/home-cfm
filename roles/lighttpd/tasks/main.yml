@@ -1,0 +1,41 @@
+---
+-   name: port is open
+    firewalld:
+        zone: public
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+
+-   name: software is installed
+    yum:
+        name: lighttpd
+        state: latest
+
+-   name: software configuration directory exists
+    file:
+        path: /opt/lighttpd
+        state: directory
+
+-   name: software is configured
+    copy:
+        src: lighttpd.conf
+        dest: /etc/lighttpd/lighttpd.conf
+    notify:
+        - restart lighttpd
+
+-   name: access file is configured
+    copy:
+        src: access.txt
+        dest: /etc/lighttpd/access.txt
+    notify:
+        - restart lighttpd
+
+-   meta: flush_handlers
+
+-   name: service is started and enabled
+    systemd:
+        name: lighttpd
+        state: started
+        enabled: yes
+...

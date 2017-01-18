@@ -1,0 +1,38 @@
+---
+-   name: port is open
+    firewalld:
+        zone: public
+        port: 9091/tcp
+        state: enabled
+        permanent: true
+        immediate: true
+
+-   name: software is installed
+    yum:
+        name: transmission-daemon
+        state: latest
+
+-   name: check if the configuration needs to be updated
+    copy:
+        src: settings.json
+        dest: /var/lib/transmission/.config/transmission-daemon/
+    register: configuration_check
+
+-   name: service is stopped
+    systemd:
+        name: transmission-daemon
+        state: stopped
+    when: configuration_check|changed
+
+-   name: software is configured
+    copy:
+        src: settings.json
+        dest: /var/lib/transmission/.config/transmission-daemon/
+    when: configuration_check|changed
+
+-   name: service is started and enabled
+    systemd:
+        name: transmission-daemon
+        state: started
+        enabled: yes
+...
