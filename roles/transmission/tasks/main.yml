@@ -7,7 +7,7 @@
         permanent: true
         immediate: true
 
--   name: transmission is installed
+-   name: software is installed
     yum:
         name: transmission-daemon
         state: latest
@@ -24,7 +24,7 @@
         state: stopped
     when: configuration_check|changed
 
--   name: transmission is configured
+-   name: software is configured
     copy:
         src: settings.json
         dest: /var/lib/transmission/.config/transmission-daemon/

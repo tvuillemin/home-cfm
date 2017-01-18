@@ -1,15 +1,17 @@
 ---
-- name: GAMING
-  hosts: gameserver
-  roles:
-        - role: torrent
-          tags: ['torrent', 'transmission']
-        - role: dontstarve
-          tags: ['dontstarve']
-        - role: minecraft
-          tags: ['minecraft']
-        - role: starbound
-          tags: ['starbound']
-        - role: mumble
-          tags: ['mumble', 'murmur']
+-   name: GAMING
+    hosts: gameserver
+    roles:
+        -   role: lighttpd
+            tags: ['lighttpd', 'torrent']
+        -   role: transmission
+            tags: ['transmission', 'torrent']
+        -   role: dontstarve
+            tags: ['dontstarve', 'games']
+        -   role: minecraft
+            tags: ['minecraft', 'games']
+        -   role: starbound
+            tags: ['starbound', 'games']
+        -   role: mumble
+            tags: ['mumble', 'murmur', 'games']
 ...

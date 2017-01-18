@@ -1,5 +1,0 @@
----
-- include: lighttpd.yml
-
-- include: transmission.yml
-...
