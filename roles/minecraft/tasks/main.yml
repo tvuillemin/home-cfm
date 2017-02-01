@@ -27,12 +27,14 @@
 
 -   name: server is downloaded
     get_url:
-        url: https://s3.amazonaws.com/Minecraft.Download/versions/1.11/minecraft_server.1.11.jar
+        url: https://launcher.mojang.com/mc/game/1.11.2/server/f00c294a1576e03fddcac777c3cf4c7d404c4ba4/server.jar
         dest: /opt/minecraft/minecraft_server.jar
-        checksum: sha256:3277965fd83d26944dfbd1b9740d95cf206985da330a1b3733868e4de7dc6f83
+        checksum: sha1:f00c294a1576e03fddcac777c3cf4c7d404c4ba4
         owner: minecraft
         group: daemon
     register: download_task
+    notify:
+        - restart minecraft
 
 -   name: transfer the world manually
     pause:
