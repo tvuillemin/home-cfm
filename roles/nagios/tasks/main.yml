@@ -1,0 +1,35 @@
+---
+-   name: packages are installed
+    yum:
+        name: '{{ item }}'
+        state: latest
+    with_items:
+        - nagios
+        - nagios-plugins-ping
+        - nagios-plugins-disk
+        - nagios-plugins-users
+        - nagios-plugins-procs
+        - nagios-plugins-load
+    notify:
+        - restart nagios
+
+-   name: SELinux is set to permissive mode
+    selinux:
+        policy: targeted
+        state: permissive
+    notify:
+        - restart nagios
+
+-   name: local checks are configured
+    copy:
+        src: localhost.cfg
+        dest: /etc/nagios/objects/localhost.cfg
+    notify:
+        - restart nagios
+
+-   name: service is started and enabled
+    systemd:
+        name: nagios
+        state: started
+        enabled: yes
+...

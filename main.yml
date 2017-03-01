@@ -2,8 +2,10 @@
 -   name: GAMING
     hosts: gameserver
     roles:
-        -   role: lighttpd
-            tags: ['lighttpd', 'torrent']
+        -   role: nagios
+            tags: ['nagios', 'monitoring']
+        -   role: httpd
+            tags: ['httpd', 'torrent', 'nagios', 'monitoring']
         -   role: transmission
             tags: ['transmission', 'torrent']
         -   role: dontstarve

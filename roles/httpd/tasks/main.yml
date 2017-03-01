@@ -1,0 +1,36 @@
+---
+-   name: port is open
+    firewalld:
+        zone: public
+        service: http
+        state: enabled
+        permanent: true
+        immediate: true
+
+-   name: software is installed
+    yum:
+        name: httpd
+        state: latest
+
+-   name: welcome page is disabled
+    copy:
+        src: welcome.conf
+        dest: /etc/httpd/conf.d/welcome.conf
+    notify:
+        - restart httpd
+
+# -   name: access file is configured
+#     copy:
+#         src: access.txt
+#         dest: /etc/lighttpd/access.txt
+#     notify:
+#         - restart lighttpd
+
+-   meta: flush_handlers
+
+-   name: service is started and enabled
+    systemd:
+        name: httpd
+        state: started
+        enabled: yes
+...
