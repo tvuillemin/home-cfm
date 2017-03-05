@@ -19,12 +19,22 @@
     notify:
         - restart httpd
 
-# -   name: access file is configured
-#     copy:
-#         src: access.txt
-#         dest: /etc/lighttpd/access.txt
-#     notify:
-#         - restart lighttpd
+-   name: software is configured
+    copy:
+        src: httpd.conf
+        dest: /etc/httpd/conf/httpd.conf
+    notify:
+        - restart httpd
+
+-   name: HT Access is configured
+    copy:
+        src: '{{ item }}'
+        dest: '/var/www/html/{{ item }}'
+    with_items:
+        - .htaccess
+        - .htpasswd
+    notify:
+        - restart httpd
 
 -   meta: flush_handlers
 
