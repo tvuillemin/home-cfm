@@ -5,7 +5,7 @@
         -   role: nagios
             tags: ['nagios', 'monitoring']
         -   role: httpd
-            tags: ['httpd', 'torrent', 'nagios', 'monitoring']
+            tags: ['httpd', 'apache']
         -   role: transmission
             tags: ['transmission', 'torrent']
         -   role: dontstarve

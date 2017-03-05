@@ -30,6 +30,12 @@
         dest: /var/lib/transmission/.config/transmission-daemon/
     when: configuration_check|changed
 
+-   name: download directory is accessible via HTTP
+    file:
+        src: /var/lib/transmission/Downloads
+        dest: /var/www/html/Downloads
+        state: link
+
 -   name: service is started and enabled
     systemd:
         name: transmission-daemon
