@@ -2,6 +2,8 @@
 -   name: GAMING
     hosts: gameserver
     roles:
+        -   role: centos
+            tags: ['centos', 'linux']
         -   role: nagios
             tags: ['nagios', 'monitoring']
         -   role: httpd
