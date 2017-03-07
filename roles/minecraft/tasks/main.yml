@@ -86,6 +86,28 @@
         owner: minecraft
         group: daemon
 
+-   name: snapshot script is installed
+    copy:
+        src: snapshot_minecraft.sh
+        dest: /opt/minecraft/snapshot_minecraft.sh
+        owner: minecraft
+        group: daemon
+
+-   name: snapshot script is executable
+    file:
+        path: /opt/minecraft/snapshot_minecraft.sh
+        mode: "u+x"
+        owner: minecraft
+        group: daemon
+
+-   name: snapshot directory exists
+    file:
+        path: /var/www/html/Minecraft
+        state: directory
+        owner: minecraft
+        group: daemon
+        mode: "u=rwx,g=rx,o=rx"
+
 -   name: service is installed
     copy:
         src: minecraft.service
