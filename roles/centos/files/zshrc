@@ -31,12 +31,16 @@ alias sudo="sudo -E"
 alias svi="sudo vim"
 
 # Powerline Theme
-POWERLEVEL9K_MODE="awesome-fontconfig"
+POWERLEVEL9K_MODE="nerdfont-fontconfig"
 POWERLEVEL9K_PROMPT_ON_NEWLINE=true
-POWERLEVEL9K_CUSTOM_PROXY_STATUS="prompt_proxy"
 POWERLEVEL9K_SHOW_CHANGESET=true
 POWERLEVEL9K_CHANGESET_HASH_LENGTH=7
-POWERLEVEL9K_TIME_FORMAT="%D{%Y-%m-%d \uf073 %H:%M}"
-POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(time context dir vcs virtualenv)
-POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=()
-source  $HOME/powerlevel9k/powerlevel9k.zsh-theme
+POWERLEVEL9K_RIGHT_SEGMENT_SEPARATOR=''
+POWERLEVEL9K_LEFT_PROMPT_ELEMENTS=(os_icon context root_indicator ip dir vcs virtualenv)
+POWERLEVEL9K_RIGHT_PROMPT_ELEMENTS=(load ram disk_usage time)
+POWERLEVEL9K_TIME_FORMAT="%D{%Y-%m-%d \uf073  %H:%M}"
+POWERLEVEL9K_VCS_GIT_ICON=$'\uF296 '
+POWERLEVEL9K_VCS_BRANCH_ICON=$'\uF126 '
+POWERLEVEL9K_PYTHON_ICON=$'\U1F40D'
+POWERLEVEL9K_DISK_ICON=$'\uF0A0'
+source $HOME/powerlevel9k/powerlevel9k.zsh-theme
