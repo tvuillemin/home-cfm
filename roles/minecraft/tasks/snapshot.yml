@@ -1,0 +1,39 @@
+---
+-   name: snapshot script is installed
+    copy:
+        src: snapshot_minecraft.sh
+        dest: /opt/minecraft/snapshot_minecraft.sh
+        owner: minecraft
+        group: daemon
+
+-   name: snapshot script is executable
+    file:
+        path: /opt/minecraft/snapshot_minecraft.sh
+        mode: "u+x"
+        owner: minecraft
+        group: daemon
+
+-   name: snapshot directory exists
+    file:
+        path: /var/www/html/Minecraft
+        state: directory
+        owner: minecraft
+        group: daemon
+        mode: "u=rwx,g=rx,o=rx"
+
+-   name: snapshot service is installed
+    copy:
+        src: minecraft-snapshot.service
+        dest: /etc/systemd/system/minecraft-snapshot.service
+
+-   name: snapshot timer is installed
+    copy:
+        src: minecraft-snapshot.timer
+        dest: /etc/systemd/system/minecraft-snapshot.timer
+
+-   name: snapshot timer is started and enabled
+    systemd:
+        name: minecraft-snapshot.timer
+        state: started
+        enabled: yes
+...

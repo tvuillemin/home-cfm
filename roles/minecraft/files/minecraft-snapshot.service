@@ -1,0 +1,10 @@
+[Unit]
+Description=Minecraft oneshot snapshot
+
+[Service]
+Type=oneshot
+ExecStart=/opt/minecraft/snapshot_minecraft.sh
+StandardOutput=journal
+
+[Install]
+WantedBy=multi-user.target
