@@ -1,0 +1,3 @@
+[submodule "roles/centos/files/powerlevel9k"]
+	path = roles/centos/files/powerlevel9k
+	url = https://github.com/bhilburn/powerlevel9k.git
