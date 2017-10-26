@@ -1,0 +1,26 @@
+---
+-   name: dedicated user exists
+    user:
+        name: git
+        group: git
+        home: /home/git
+        createhome: yes
+        shell: /usr/bin/bash
+
+-   name: user ssh directory exists
+    file:
+        path: /home/git/.ssh/
+        state: directory
+        recurse: yes
+
+-   name: authorized keys are set
+    copy:
+        remote_src: yes
+        src: /home/tvuillemin/.ssh/authorized_keys
+        dest: /home/git/.ssh/authorized_keys
+
+-   name: git is installed
+    yum:
+        name: git
+        state: latest
+...

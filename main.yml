@@ -6,6 +6,8 @@
             tags: ['centos', 'linux']
         -   role: nagios
             tags: ['nagios', 'monitoring']
+        -   role: git
+            tags: ['git']
         -   role: httpd
             tags: ['httpd', 'apache']
         -   role: transmission
