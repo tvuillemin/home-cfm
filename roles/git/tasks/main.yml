@@ -1,26 +1,31 @@
 ---
--   name: dedicated user exists
-    user:
-        name: git
-        group: git
-        home: /home/git
-        createhome: yes
-        shell: /usr/bin/bash
+- name: dedicated user exists
+  user:
+    name: git
+    group: git
+    home: /home/git
+    createhome: yes
+    shell: /usr/bin/bash
+  become: yes
 
--   name: user ssh directory exists
-    file:
-        path: /home/git/.ssh/
-        state: directory
-        recurse: yes
+- name: user ssh directory exists
+  file:
+    path: /home/git/.ssh/
+    state: directory
+    recurse: yes
+  become: yes
+  become_user: git
 
--   name: authorized keys are set
-    copy:
-        remote_src: yes
-        src: /home/tvuillemin/.ssh/authorized_keys
-        dest: /home/git/.ssh/authorized_keys
+- name: authorized keys are set
+  copy:
+    remote_src: yes
+    src: /home/tvuillemin/.ssh/authorized_keys
+    dest: /home/git/.ssh/authorized_keys
+  become: yes
 
--   name: git is installed
-    yum:
-        name: git
-        state: latest
+- name: git is installed
+  package:
+    name: git
+    state: latest
+  become: yes
 ...
