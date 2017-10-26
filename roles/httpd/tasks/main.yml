@@ -1,46 +1,52 @@
 ---
--   name: port is open
-    firewalld:
-        zone: public
-        service: http
-        state: enabled
-        permanent: true
-        immediate: true
+- name: port is open
+  firewalld:
+    zone: public
+    service: http
+    state: enabled
+    permanent: true
+    immediate: true
+  become: yes
 
--   name: software is installed
-    yum:
-        name: httpd
-        state: latest
+- name: software is installed
+  package:
+    name: httpd
+    state: latest
+  become: yes
 
--   name: welcome page is disabled
-    copy:
-        src: welcome.conf
-        dest: /etc/httpd/conf.d/welcome.conf
-    notify:
-        - restart httpd
+- name: welcome page is disabled
+  copy:
+    src: welcome.conf
+    dest: /etc/httpd/conf.d/welcome.conf
+  notify:
+    - restart httpd
+  become: yes
 
--   name: software is configured
-    copy:
-        src: httpd.conf
-        dest: /etc/httpd/conf/httpd.conf
-    notify:
-        - restart httpd
+- name: software is configured
+  copy:
+    src: httpd.conf
+    dest: /etc/httpd/conf/httpd.conf
+  notify:
+    - restart httpd
+  become: yes
 
--   name: HT Access is configured
-    copy:
-        src: '{{ item }}'
-        dest: '/var/www/html/{{ item }}'
-    with_items:
-        - .htaccess
-        - .htpasswd
-    notify:
-        - restart httpd
+- name: HT Access is configured
+  copy:
+    src: '{{ item }}'
+    dest: '/var/www/html/{{ item }}'
+  with_items:
+    - .htaccess
+    - .htpasswd
+  notify:
+    - restart httpd
+  become: yes
 
--   meta: flush_handlers
+- meta: flush_handlers
 
--   name: service is started and enabled
-    systemd:
-        name: httpd
-        state: started
-        enabled: yes
+- name: service is started and enabled
+  systemd:
+      name: httpd
+      state: started
+      enabled: yes
+  become: yes
 ...
