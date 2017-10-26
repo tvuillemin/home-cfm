@@ -1,16 +1,19 @@
 ---
 - name: firewall daemon is installed
   yum:
-        name: firewalld
-        state: latest
+    name: firewalld
+    state: latest
+  become: yes
 
 - name: firewall is started and enabled
   systemd:
-        name: firewalld
-        state: started
-        enabled: yes
+    name: firewalld
+    state: started
+    enabled: yes
+  become: yes
 
 - name: firewall default zone is attached to the main network interface
   command: firewall-cmd --permanent --zone=public --change-interface=eth0
   changed_when: false
+  become: yes
 ...

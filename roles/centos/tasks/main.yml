@@ -1,7 +1,5 @@
 ---
 - import_tasks: package_manager.yml
-
 - import_tasks: firewall.yml
-
 - import_tasks: tools.yml
 ...

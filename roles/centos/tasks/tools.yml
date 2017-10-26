@@ -1,36 +1,36 @@
 ---
 - name: tools are installed
-  yum:
-        name: '{{ item }}'
-        state: latest
+  package:
+    name: '{{ item }}'
+    state: latest
   with_items:
-        - bc
-        - htop
-        - lsof
-        - vim
-        - zsh
+    - bc
+    - htop
+    - lsof
+    - vim
+    - zsh
+  become: yes
 
--   name: powerlevel9k is installed
-    copy:
-        src: powerlevel9k
-        dest: /home/tvuillemin/
-        owner: tvuillemin
+- name: powerlevel9k is installed
+  synchronize:
+    src: powerlevel9k
+    dest: /home/tvuillemin/
 
 - name: zsh is configured
   copy:
-        src: zshrc
-        dest: /home/tvuillemin/.zshrc
-        owner: tvuillemin
+    src: zshrc
+    dest: /home/tvuillemin/.zshrc
+    owner: tvuillemin
 
 - name: zsh is the default shell
   user:
-        name: tvuillemin
-        state: present
-        shell: /usr/bin/zsh
+    name: tvuillemin
+    state: present
+    shell: /usr/bin/zsh
 
 - name: vim is configured
   copy:
-        src: vimrc
-        dest: /home/tvuillemin/.vimrc
-        owner: tvuillemin
+    src: vimrc
+    dest: /home/tvuillemin/.vimrc
+    owner: tvuillemin
 ...
