@@ -1,7 +1,7 @@
 ---
-- include: package_manager.yml
+- import_tasks: package_manager.yml
 
-- include: firewall.yml
+- import_tasks: firewall.yml
 
-- include: tools.yml
+- import_tasks: tools.yml
 ...

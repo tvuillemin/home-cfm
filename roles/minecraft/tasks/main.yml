@@ -41,7 +41,7 @@
         prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
     when: download_task|changed
 
--   include: server_properties.yml
+-   import_tasks: server_properties.yml
 
 -   name: white list is downloaded
     copy:
@@ -86,7 +86,7 @@
         owner: minecraft
         group: daemon
 
--   include: snapshot.yml
+-   import_tasks: snapshot.yml
 
 -   name: service is installed
     copy:
