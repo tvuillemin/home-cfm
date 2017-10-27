@@ -16,9 +16,4 @@
     name: https://download1.rpmfusion.org/nonfree/el/updates/6/i386/rpmfusion-nonfree-release-6-1.noarch.rpm
     disable_gpg_check: yes
     state: present
-
-- name: installed packages are up-to-date
-  package:
-    name: '*'
-    state: latest
 ...

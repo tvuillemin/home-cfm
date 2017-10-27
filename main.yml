@@ -1,23 +1,23 @@
 ---
--   name: GAMING
-    hosts: gameserver
-    roles:
-        -   role: centos
-            tags: ['centos', 'linux']
-        -   role: nagios
-            tags: ['nagios', 'monitoring']
-        -   role: git
-            tags: ['git']
-        -   role: httpd
-            tags: ['httpd', 'apache']
-        -   role: transmission
-            tags: ['transmission', 'torrent']
-        -   role: dontstarve
-            tags: ['dontstarve', 'games']
-        -   role: minecraft
-            tags: ['minecraft', 'games']
-        -   role: starbound
-            tags: ['starbound', 'games']
-        -   role: mumble
-            tags: ['mumble', 'murmur', 'games']
+- name: GAMING
+  hosts: gameserver
+  roles:
+    - role: core
+      tags: ['core', 'linux']
+    # - role: nagios
+      # tags: ['nagios', 'monitoring']
+    # - role: git
+      # tags: ['git']
+    # - role: httpd
+    #   tags: ['httpd', 'apache']
+    # - role: transmission
+    #   tags: ['transmission', 'torrent']
+    # - role: dontstarve
+    #   tags: ['dontstarve', 'games']
+    # - role: minecraft
+    #   tags: ['minecraft', 'games']
+    # - role: starbound
+    #   tags: ['starbound', 'games']
+    # - role: mumble
+    #   tags: ['mumble', 'murmur', 'games']
 ...

@@ -9,12 +9,13 @@
     - lsof
     - vim
     - zsh
-  become: yes
 
 - name: powerlevel9k is installed
   synchronize:
     src: powerlevel9k
     dest: /home/tvuillemin/
+  become: no
+  # The synchronize module has some compatibility problems with the become module
 
 - name: zsh is configured
   copy:
