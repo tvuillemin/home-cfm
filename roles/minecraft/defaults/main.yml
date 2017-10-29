@@ -2,6 +2,6 @@
 mc_install_dir: /opt/minecraft
 mc_max_ram: 2048M
 mc_min_ram: 1024M
-mc_server_checksum: sha1:f00c294a1576e03fddcac777c3cf4c7d404c4ba4
-mc_server_url: https://launcher.mojang.com/mc/game/1.11.2/server/f00c294a1576e03fddcac777c3cf4c7d404c4ba4/server.jar
+mc_server_checksum: sha1:886945bfb2b978778c3a0288fd7fab09d315b25f
+mc_server_url: https://s3.amazonaws.com/Minecraft.Download/versions/1.12.2/minecraft_server.1.12.2.jar
 ...
