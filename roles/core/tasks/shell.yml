@@ -1,14 +1,9 @@
 ---
 - name: tools are installed
   package:
-    name: '{{ item }}'
+    name: "{{ item }}"
     state: latest
-  with_items:
-    - bc
-    - htop
-    - lsof
-    - vim
-    - zsh
+  with_items: "{{ tools_packages }}"
 
 - name: powerlevel9k is installed
   synchronize:

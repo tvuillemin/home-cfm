@@ -4,12 +4,10 @@
   roles:
     - role: core
       tags: ['core', 'linux']
-    # - role: nagios
-      # tags: ['nagios', 'monitoring']
-    # - role: git
-      # tags: ['git']
-    # - role: httpd
-    #   tags: ['httpd', 'apache']
+    - role: nagios
+      tags: ['nagios', 'monitoring']
+    - role: git
+      tags: ['git']
     # - role: transmission
     #   tags: ['transmission', 'torrent']
     # - role: dontstarve

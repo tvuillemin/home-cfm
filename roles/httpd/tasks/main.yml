@@ -6,13 +6,11 @@
     state: enabled
     permanent: true
     immediate: true
-  become: yes
 
 - name: software is installed
   package:
     name: httpd
     state: latest
-  become: yes
 
 - name: welcome page is disabled
   copy:
@@ -20,7 +18,6 @@
     dest: /etc/httpd/conf.d/welcome.conf
   notify:
     - restart httpd
-  become: yes
 
 - name: software is configured
   copy:
@@ -28,7 +25,6 @@
     dest: /etc/httpd/conf/httpd.conf
   notify:
     - restart httpd
-  become: yes
 
 - name: HT Access is configured
   copy:
@@ -39,14 +35,10 @@
     - .htpasswd
   notify:
     - restart httpd
-  become: yes
-
-- meta: flush_handlers
 
 - name: service is started and enabled
   systemd:
       name: httpd
       state: started
       enabled: yes
-  become: yes
 ...

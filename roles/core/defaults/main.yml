@@ -1,0 +1,8 @@
+---
+tools_packages:
+  - bc
+  - htop
+  - lsof
+  - vim
+  - zsh
+...
