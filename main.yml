@@ -8,8 +8,8 @@
       tags: ['nagios', 'monitoring']
     - role: git
       tags: ['git']
-    # - role: transmission
-    #   tags: ['transmission', 'torrent']
+    - role: transmission
+      tags: ['transmission', 'torrent']
     # - role: dontstarve
     #   tags: ['dontstarve', 'games']
     # - role: minecraft
