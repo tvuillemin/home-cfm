@@ -12,8 +12,8 @@
       tags: ['transmission', 'torrent']
     # - role: dontstarve
     #   tags: ['dontstarve', 'games']
-    # - role: minecraft
-    #   tags: ['minecraft', 'games']
+    - role: minecraft
+      tags: ['minecraft', 'games']
     # - role: starbound
     #   tags: ['starbound', 'games']
     # - role: mumble

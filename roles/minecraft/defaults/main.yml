@@ -1,4 +1,7 @@
 ---
-java_RAM_min: 1024M
-java_RAM_max: 2048M
+mc_install_dir: /opt/minecraft
+mc_max_ram: 2048M
+mc_min_ram: 1024M
+mc_server_checksum: sha1:f00c294a1576e03fddcac777c3cf4c7d404c4ba4
+mc_server_url: https://launcher.mojang.com/mc/game/1.11.2/server/f00c294a1576e03fddcac777c3cf4c7d404c4ba4/server.jar
 ...

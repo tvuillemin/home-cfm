@@ -1,49 +1,51 @@
 ---
--   name: online mode is set to false
+- block:
+  - name: online mode is set to false
     lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^online-mode=
-        line: online-mode=true
+      dest: /opt/minecraft/server.properties
+      regexp: ^online-mode=
+      line: online-mode=true
     notify:
-        - restart minecraft
+      - restart minecraft
 
--   name: difficulty is set to easy
+  - name: difficulty is set to easy
     lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^difficulty=
-        line: difficulty=1
+      dest: /opt/minecraft/server.properties
+      regexp: ^difficulty=
+      line: difficulty=1
     notify:
-        - restart minecraft
+      - restart minecraft
 
--   name: pvp is enabled
+  - name: pvp is enabled
     lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^pvp=
-        line: pvp=true
+      dest: /opt/minecraft/server.properties
+      regexp: ^pvp=
+      line: pvp=true
     notify:
-        - restart minecraft
+      - restart minecraft
 
--   name: rcon is enabled
+  - name: rcon is enabled
     lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^enable-rcon=
-        line: enable-rcon=true
+      dest: /opt/minecraft/server.properties
+      regexp: ^enable-rcon=
+      line: enable-rcon=true
     notify:
-        - restart minecraft
+      - restart minecraft
 
--   name: rcon password is set
+  - name: rcon password is set
     lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^rcon.password=
-        line: rcon.password=59228454
+      dest: /opt/minecraft/server.properties
+      regexp: ^rcon.password=
+      line: rcon.password=59228454
     notify:
-        - restart minecraft
+      - restart minecraft
 
--   name: white list is enabled
+  - name: white list is enabled
     lineinfile:
-        dest: /opt/minecraft/server.properties
-        regexp: ^white-list=
-        line: white-list=true
+      dest: /opt/minecraft/server.properties
+      regexp: ^white-list=
+      line: white-list=true
     notify:
-        - restart minecraft
+      - restart minecraft
+  become_user: minecraft
 ...

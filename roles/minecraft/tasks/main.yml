@@ -1,105 +1,97 @@
 ---
--   name: java is installed
-    yum:
-        name: java-1.8.0-openjdk
-        state: latest
+- name: java is installed
+  package:
+    name: java-1.8.0-openjdk
+    state: latest
 
--   name: port is open
-    firewalld:
-        zone: public
-        port: 25565/tcp
-        state: enabled
-        permanent: true
-        immediate: true
+- name: port is open
+  firewalld:
+    zone: public
+    port: 25565/tcp
+    state: enabled
+    permanent: true
+    immediate: true
 
--   name: dedicated user exists
-    user:
-        name: minecraft
-        group: daemon
-        shell: /usr/bin/bash
+- name: dedicated user exists
+  user:
+    name: minecraft
+    group: daemon
+    shell: /usr/bin/bash
 
--   name: directory exists
-    file:
-        path: /opt/minecraft
-        state: directory
-        owner: minecraft
-        group: daemon
+- name: directory exists
+  file:
+    path: "{{ mc_install_dir }}"
+    state: directory
+    owner: minecraft
+    group: daemon
 
--   name: server is downloaded
-    get_url:
-        url: https://launcher.mojang.com/mc/game/1.11.2/server/f00c294a1576e03fddcac777c3cf4c7d404c4ba4/server.jar
-        dest: /opt/minecraft/minecraft_server.jar
-        checksum: sha1:f00c294a1576e03fddcac777c3cf4c7d404c4ba4
-        owner: minecraft
-        group: daemon
-    register: download_task
-    notify:
-        - restart minecraft
+- name: server is downloaded
+  get_url:
+    url: "{{ mc_server_url }}"
+    dest: "{{ mc_install_dir }}/minecraft_server.jar"
+    checksum: "{{ mc_server_checksum }}"
+  become_user: minecraft
+  register: download_task
+  notify:
+    - restart minecraft
 
--   name: transfer the world manually
-    pause:
-        prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
-    when: download_task|changed
+- name: transfer the world manually
+  pause:
+    prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
+  when: download_task|changed
 
--   import_tasks: server_properties.yml
+- import_tasks: server_properties.yml
 
--   name: white list is downloaded
-    copy:
-        src: whitelist.json
-        dest: /opt/minecraft/whitelist.json
-        owner: minecraft
-        group: daemon
-    notify:
-        - restart minecraft
+- name: white list is downloaded
+  copy:
+    src: whitelist.json
+    dest: "{{ mc_install_dir }}/whitelist.json"
+  become_user: minecraft
+  notify:
+    - restart minecraft
 
--   name: OP list is downloaded
-    copy:
-        src: ops.json
-        dest: /opt/minecraft/ops.json
-        owner: minecraft
-        group: daemon
-    notify:
-        - restart minecraft
+- name: OP list is downloaded
+  copy:
+    src: ops.json
+    dest: "{{ mc_install_dir }}/ops.json"
+  become_user: minecraft
+  notify:
+    - restart minecraft
 
--   name: eula is set to true
-    copy:
-        src: eula.txt
-        dest: /opt/minecraft/eula.txt
-        owner: minecraft
-        group: daemon
-    notify:
-        - restart minecraft
+- name: eula is set to true
+  copy:
+    src: eula.txt
+    dest: "{{ mc_install_dir }}/eula.txt"
+  become_user: minecraft
+  notify:
+    - restart minecraft
 
--   name: start script is installed
-    template:
-        src: start_minecraft.sh.j2
-        dest: /opt/minecraft/start_minecraft.sh
-        owner: minecraft
-        group: daemon
-    notify:
-        - restart minecraft
+- name: start script is installed
+  template:
+    src: start_minecraft.sh.j2
+    dest: "{{ mc_install_dir }}/start_minecraft.sh"
+  become_user: minecraft
+  notify:
+    - restart minecraft
 
--   name: start script is executable
-    file:
-        path: /opt/minecraft/start_minecraft.sh
-        mode: "u+x"
-        owner: minecraft
-        group: daemon
+- name: start script is executable
+  file:
+    path: "{{ mc_install_dir }}/start_minecraft.sh"
+    mode: "u+x"
+  become_user: minecraft
 
--   import_tasks: snapshot.yml
+- import_tasks: snapshot.yml
 
--   name: service is installed
-    copy:
-        src: minecraft.service
-        dest: /etc/systemd/system/minecraft.service
-    notify:
-        - restart minecraft
+- name: service is installed
+  template:
+    src: minecraft.service.j2
+    dest: /etc/systemd/system/minecraft.service
+  notify:
+    - restart minecraft
 
--   meta: flush_handlers
-
--   name: service is started
-    systemd:
-        name: minecraft
-        state: started
-        enabled: yes
+- name: service is started
+  systemd:
+    name: minecraft
+    state: started
+    enabled: yes
 ...
