@@ -36,7 +36,7 @@
     lineinfile:
       dest: /opt/minecraft/server.properties
       regexp: ^rcon.password=
-      line: rcon.password=59228454
+      line: "rcon.password={{ mc_rcon_password }}"
     notify:
       - restart minecraft
 
