@@ -2,7 +2,7 @@
 - name: packages are installed
   package:
     name: '{{ item }}'
-    state: latest
+    state: present
   with_items: "{{ nagios_packages }}"
   notify:
     - restart nagios

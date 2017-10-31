@@ -10,7 +10,7 @@
 - name: software is installed
   package:
     name: httpd
-    state: latest
+    state: present
 
 - name: welcome page is disabled
   copy:

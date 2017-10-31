@@ -1,8 +1,8 @@
 ---
 - name: firewall daemon is installed
-  yum:
+  package:
     name: firewalld
-    state: latest
+    state: present
 
 - name: firewall is started and enabled
   systemd:

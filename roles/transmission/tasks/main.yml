@@ -8,9 +8,9 @@
     immediate: true
 
 - name: software is installed
-  yum:
+  package:
     name: transmission-daemon
-    state: latest
+    state: present
 
 - name: check if the configuration needs to be updated
   copy:

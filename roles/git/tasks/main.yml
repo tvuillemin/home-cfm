@@ -23,5 +23,5 @@
 - name: git is installed
   package:
     name: git
-    state: latest
+    state: present
 ...

@@ -8,9 +8,9 @@
 #         immediate: true
 
 - name: dependencies are installed
-  yum:
+  package:
         name: '{{ item }}'
-        state: latest
+        state: present
   with_items:
         - libcurl.i686
 

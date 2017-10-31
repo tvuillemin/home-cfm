@@ -1,6 +1,6 @@
 ---
 - name: minidlna is installed
-  yum:
+  package:
         name: minidlna
         state: latest
 ...

@@ -7,7 +7,7 @@
         state: present
 
 - name: samba is installed
-  yum:
+  package:
         name: samba
         state: latest
 

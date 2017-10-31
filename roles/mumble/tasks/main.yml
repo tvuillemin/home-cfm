@@ -1,8 +1,8 @@
 ---
 - name: dependencies are installed
-  yum:
+  package:
         name: '{{ item }}'
-        state: latest
+        state: present
   with_items:
         - bzip2
         - mariadb
