@@ -2,8 +2,8 @@
 - name: GAMING
   hosts: gameserver
   roles:
-    - role: core
-      tags: ['core', 'linux']
+    - role: shell
+      tags: ['shell', 'linux']
     - role: nagios
       tags: ['nagios', 'monitoring']
     - role: git

@@ -3,11 +3,4 @@
   when: ansible_distribution == "CentOS"
 
 - import_tasks: firewall.yml
-
-- import_tasks: shell.yml
-
-- name: installed packages are up-to-date
-  package:
-    name: '*'
-    state: latest
 ...
