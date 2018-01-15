@@ -1,21 +1,29 @@
 ---
-- name: GAMING
-  hosts: gameserver
+- hosts: all
   roles:
     - role: shell
       tags: ['shell', 'linux']
-    - role: nagios
-      tags: ['nagios', 'monitoring']
-    - role: git
-      tags: ['git']
-    - role: transmission
-      tags: ['transmission', 'torrent']
-    # - role: dontstarve
-    #   tags: ['dontstarve', 'games']
-    - role: minecraft
-      tags: ['minecraft', 'games']
-    # - role: starbound
-    #   tags: ['starbound', 'games']
-    # - role: mumble
-    #   tags: ['mumble', 'murmur', 'games']
+
+# - hosts: raspberrypi
+#   roles:
+#     - role: transmission
+#       tags: ['transmission', 'torrent']
+
+# - name: GAMING
+#   hosts: gameserver
+#   roles:
+#     - role: nagios
+#       tags: ['nagios', 'monitoring']
+#     - role: git
+#       tags: ['git']
+#     - role: transmission
+#       tags: ['transmission', 'torrent']
+#     - role: minecraft
+#       tags: ['minecraft', 'games']
+#     - role: mumble
+#       tags: ['mumble', 'murmur', 'games']
+      # - role: dontstarve
+      #   tags: ['dontstarve', 'games']
+      # - role: starbound
+      #   tags: ['starbound', 'games']
 ...

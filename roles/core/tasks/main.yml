@@ -1,6 +1,7 @@
 ---
-- import_tasks: centos.yml
+- include_tasks: centos.yml
   when: ansible_distribution == "CentOS"
 
-- import_tasks: firewall.yml
+- include_tasks: firewall.yml
+  when: firewall_protection is defined
 ...
