@@ -4,10 +4,10 @@
     - role: shell
       tags: ['shell', 'linux']
 
-# - hosts: raspberrypi
-#   roles:
-#     - role: transmission
-#       tags: ['transmission', 'torrent']
+- hosts: raspberrypi
+  roles:
+    - role: transmission
+      tags: ['transmission', 'torrent']
 
 # - name: GAMING
 #   hosts: gameserver

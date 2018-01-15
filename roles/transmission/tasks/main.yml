@@ -6,6 +6,7 @@
     state: enabled
     permanent: true
     immediate: true
+  when: firewall_protection is defined
 
 - name: software is installed
   package:
@@ -15,7 +16,7 @@
 - name: check if the configuration needs to be updated
   copy:
     src: settings.json
-    dest: /var/lib/transmission/.config/transmission-daemon/
+    dest: /etc/transmission-daemon/
   register: configuration_check
   # Transmission configuration cannot be updated if the daemon is running
 
@@ -28,14 +29,8 @@
 - name: software is configured
   copy:
     src: settings.json
-    dest: /var/lib/transmission/.config/transmission-daemon/
+    dest: /etc/transmission-daemon//transmission-daemon/
   when: configuration_check|changed
-
-- name: download directory is accessible via HTTP
-  file:
-    src: /var/lib/transmission/Downloads
-    dest: /var/www/html/Downloads
-    state: link
 
 - name: service is started and enabled
   systemd:
