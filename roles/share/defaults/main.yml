@@ -1,0 +1,6 @@
+---
+share_configuration: /etc/samba/smb.conf
+share_device: /dev/sda1
+share_mount_point: /media/usb
+share_package: samba
+share_service: smbd.service

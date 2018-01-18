@@ -1,0 +1,6 @@
+---
+- name: "restart {{ share_service }}"
+  systemd:
+    name: "{{ share_service }}"
+    state: restarted
+  listen: reload share configuration
