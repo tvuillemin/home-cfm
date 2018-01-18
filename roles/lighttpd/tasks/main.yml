@@ -1,0 +1,23 @@
+---
+- name: software is installed
+  package:
+    name: lighttpd
+    state: present
+
+- name: software is configured
+  copy:
+    src: external.conf
+    dest: /etc/lighttpd/
+  register: configuration
+
+- name: software is restarted
+  systemd:
+    name: lighttpd
+    state: restarted
+  when: configuration | changed
+
+- name: software is started and enabled
+  systemd:
+    name: lighttpd
+    state: started
+    enabled: yes

@@ -8,6 +8,8 @@
   roles:
     - role: transmission
       tags: ['transmission', 'torrent']
+    - role: lighttpd
+      tags: ['lighttpd', 'reverse_proxy']
 
 # - name: GAMING
 #   hosts: gameserver
