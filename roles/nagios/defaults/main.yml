@@ -1,9 +1,0 @@
----
-nagios_packages:
-  - nagios
-  - nagios-plugins-ping
-  - nagios-plugins-disk
-  - nagios-plugins-users
-  - nagios-plugins-procs
-  - nagios-plugins-load
-...
