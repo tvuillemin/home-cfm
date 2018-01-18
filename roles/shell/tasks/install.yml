@@ -1,0 +1,32 @@
+---
+- name: tools are installed
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items: "{{ tools_packages }}"
+
+- name: powerlevel9k is installed
+  synchronize:
+    src: powerlevel9k
+    dest: "/home/{{ user }}/"
+  become: no
+  # The synchronize module has some compatibility problems with the become module
+
+- name: zsh is configured
+  copy:
+    src: zshrc
+    dest: "/home/{{ user }}/.zshrc"
+    owner: "{{ user }}"
+
+- name: zsh is the default shell
+  user:
+    name: "{{ user }}"
+    state: present
+    shell: /usr/bin/zsh
+
+- name: vim is configured
+  copy:
+    src: vimrc
+    dest: "/home/{{ user }}/.vimrc"
+    owner: "{{ user }}"
+...
