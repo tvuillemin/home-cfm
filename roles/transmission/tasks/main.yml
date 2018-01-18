@@ -13,24 +13,17 @@
     name: transmission-daemon
     state: present
 
-- name: check if the configuration needs to be updated
+- name: configuration file is up-to-date
   copy:
     src: settings.json
     dest: /etc/transmission-daemon/
-  register: configuration_check
-  # Transmission configuration cannot be updated if the daemon is running
+  register: configuration
 
-- name: service is stopped
+- name: service is reloaded
   systemd:
     name: transmission-daemon
-    state: stopped
-  when: configuration_check|changed
-
-- name: software is configured
-  copy:
-    src: settings.json
-    dest: /etc/transmission-daemon//transmission-daemon/
-  when: configuration_check|changed
+    state: reloaded
+  when: configuration | changed
 
 - name: service is started and enabled
   systemd:
