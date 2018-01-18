@@ -1,33 +1,28 @@
 ---
-- name: port is open
+- name: "port {{ torrent_port }} is open"
   firewalld:
     zone: public
-    port: 9091/tcp
+    port: "{{ torrent_port }}/tcp"
     state: enabled
     permanent: true
     immediate: true
   when: firewall_protection is defined
 
-- name: software is installed
+- name: "{{ torrent_package }} is installed"
   package:
-    name: transmission-daemon
+    name: "{{ torrent_package }}"
     state: present
 
-- name: configuration file is up-to-date
+- name: "{{ torrent_configuration }} is up-to-date"
   copy:
     src: settings.json
-    dest: /etc/transmission-daemon/
-  register: configuration
+    dest: "{{ torrent_configuration }}"
+  notify: reload torrent configuration
 
-- name: service is reloaded
-  systemd:
-    name: transmission-daemon
-    state: reloaded
-  when: configuration | changed
+- meta: flush_handlers
 
-- name: service is started and enabled
+- name: "{{ torrent_service }} is started and enabled"
   systemd:
-    name: transmission-daemon
+    name: "{{ torrent_service }}"
     state: started
     enabled: yes
-...

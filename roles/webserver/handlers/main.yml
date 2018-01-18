@@ -1,0 +1,6 @@
+---
+- name: "restart {{ webserver_service }}"
+  systemd:
+    name: "{{ webserver_service }}"
+    state: restarted
+  listen: reload webserver configuration
