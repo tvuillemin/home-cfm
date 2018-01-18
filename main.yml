@@ -6,8 +6,8 @@
 
 - hosts: raspberrypi
   roles:
-    - role: transmission
-      tags: ['transmission', 'torrent']
-    - role: lighttpd
-      tags: ['lighttpd', 'reverse_proxy']
+    - torrent
+    - webserver
+  vars:
+    torrent_reverse_proxy: true
 ...

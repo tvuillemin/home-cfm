@@ -9,6 +9,7 @@
     src: external.conf
     dest: /etc/lighttpd/
   register: configuration
+  when: torrent_reverse_proxy
 
 - name: software is restarted
   systemd:
@@ -21,3 +22,4 @@
     name: lighttpd
     state: started
     enabled: yes
+...
