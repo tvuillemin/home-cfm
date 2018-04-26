@@ -1,0 +1,6 @@
+---
+- name: tools are installed
+  package:
+    name: libselinux-python
+    state: present
+...
