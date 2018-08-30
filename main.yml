@@ -10,4 +10,8 @@
     - webserver
   vars:
     torrent_reverse_proxy: true
+
+- hosts: gameserver
+  roles:
+    - starbound
 ...

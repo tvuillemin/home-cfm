@@ -1,39 +1,40 @@
 ---
 - name: starbound port is open
   firewalld:
-        zone: public
-        port: 21025/tcp
-        state: enabled
-        permanent: true
-        immediate: true
+    zone: FedoraServer
+    port: 21025/tcp
+    state: enabled
+    permanent: true
+    immediate: true
 
 - name: starbound server is up to date
-  command: /opt/steamcmd/steamcmd.sh +login {{ steam_login }} '{{ steam_password }}' +force_install_dir /opt/starbound +app_update 211820 validate +quit
+  pause:
+    prompt: Run /opt/steamcmd/steamcmd.sh +login {{ steam_login }} '{{ steam_password }}' +force_install_dir /opt/starbound +app_update 211820 validate +quit
   notify:
-        - restart starbound
+    - restart starbound
 
 - name: starbound universe exists
   stat:
-        path: /opt/starbound/storage/universe
+    path: /opt/starbound/storage/universe
   register: universe
 
 - name: transfer the starbound universe manually
   pause:
-        prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
+    prompt: Upload the minecraft world now if necessary. Then hit Ctrl-C.
   when: not universe.stat.exists
 
 - name: starbound service is installed
   copy:
-        src: starbound.service
-        dest: /etc/systemd/system/starbound.service
+    src: starbound.service
+    dest: /etc/systemd/system/starbound.service
   notify:
-        - restart starbound
+    - restart starbound
 
 - meta: flush_handlers
 
 - name: starbound service is started
   systemd:
-        name: starbound
-        state: started
-        enabled: yes
+    name: starbound
+    state: started
+    enabled: yes
 ...

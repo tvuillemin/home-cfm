@@ -1,13 +1,5 @@
 ---
-- name: CentOS configuration playbook
-  include_tasks: centos.yml
-  when: ansible_distribution == "CentOS"
-
 - name: Fedora configuration playbook
   include_tasks: fedora.yml
   when: ansible_distribution == "Fedora"
-
-- name: firewall configuration playbook
-  include_tasks: firewall.yml
-  when: firewall_protection is defined
 ...

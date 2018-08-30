@@ -1,5 +1,5 @@
 ---
 dependencies:
-  - centos
+  - core
   - steam
 ...
