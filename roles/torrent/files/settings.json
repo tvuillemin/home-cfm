@@ -44,7 +44,7 @@
     "ratio-limit-enabled": false,
     "rename-partial-files": true,
     "rpc-authentication-required": true,
-    "rpc-bind-address": "10.0.0.5",
+    "rpc-bind-address": "192.168.1.253",
     "rpc-enabled": true,
     "rpc-host-whitelist": "",
     "rpc-host-whitelist-enabled": true,
