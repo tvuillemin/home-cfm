@@ -4,5 +4,5 @@ tools_packages:
   - htop
   - lsof
   - vim
-  - zsh
+  - fish
 ...
