@@ -1,0 +1,19 @@
+---
+- name: package is installed
+  package:
+    name: transmission-daemon
+    state: present
+
+- name: service is configured
+  copy:
+    src: settings.json
+    dest: /etc/transmission-daemon/settings.json
+  notify: reload transmission
+
+- meta: flush_handlers
+
+- name: service is started and enabled"
+  systemd:
+    name: transmission-daemon
+    state: started
+    enabled: yes

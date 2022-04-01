@@ -1,8 +1,0 @@
----
-tools_packages:
-  - bc
-  - htop
-  - lsof
-  - vim
-  - fish
-...

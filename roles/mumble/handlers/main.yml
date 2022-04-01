@@ -1,7 +1,0 @@
----
-- name: restart mumble
-  systemd:
-        name: mumble
-        state: restarted
-        daemon_reload: yes
-...

@@ -1,0 +1,6 @@
+---
+- name: reloading service
+  systemd:
+    name: transmission-daemon
+    state: reloaded
+  listen: reload transmission

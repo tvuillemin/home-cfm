@@ -1,6 +1,0 @@
----
-webserver_configuration: /etc/lighttpd/external.conf
-webserver_package: lighttpd
-webserver_service: lighttpd.service
-
-torrent_reverse_proxy: false

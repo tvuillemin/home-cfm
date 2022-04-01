@@ -1,0 +1,7 @@
+- name: the media folder is mounted
+  mount:
+    src: //10.0.0.136/Médiathèque
+    path: /mnt/Médiathèque
+    fstype: cifs
+    opts: 'username=pi,password=?(64NYiM,dir_mode=0777,file_mode=0777'
+    state: mounted

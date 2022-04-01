@@ -1,5 +1,0 @@
----
-torrent_configuration: /etc/transmission-daemon/settings.json
-torrent_package: transmission-daemon
-torrent_port: 9091
-torrent_service: transmission-daemon.service

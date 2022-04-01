@@ -1,0 +1,11 @@
+---
+- name: package is installed
+  package:
+    name: jellyfin
+    state: present
+
+- name: service is started and enabled
+  systemd:
+    name: jellyfin
+    state: started
+    enabled: yes

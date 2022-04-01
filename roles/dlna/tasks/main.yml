@@ -1,6 +1,0 @@
----
-- name: minidlna is installed
-  package:
-        name: minidlna
-        state: latest
-...

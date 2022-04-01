@@ -1,0 +1,9 @@
+---
+- name: Configuring the media server
+  hosts: mediaserver
+  roles:
+    - base
+    - jellyfin
+    - nas-client
+    - transmission
+

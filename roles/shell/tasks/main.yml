@@ -1,8 +1,0 @@
----
-- name: installation playbook
-  include_tasks: install.yml
-  tags:
-    - linux
-    - shell
-    - vim
-    - zsh

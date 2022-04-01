@@ -1,0 +1,21 @@
+---
+- name: command-line tools are installed
+  package:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - fish
+    - htop
+    - vim
+
+- name: fish is the default shell
+  user:
+    name: "{{ user }}"
+    state: present
+    shell: /usr/bin/fish
+
+- name: vim is configured
+  copy:
+    src: vimrc
+    dest: "/home/{{ user }}/.vimrc"
+    owner: "{{ user }}"

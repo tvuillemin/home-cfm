@@ -1,0 +1,18 @@
+---
+- name: UPDATE
+  hosts: mediaserver
+  tasks:
+    - name: update all the installed packages
+      package:
+        name: '*'
+        state: latest
+
+    - name: reboot the server
+      command: /usr/bin/systemd-run --on-active=5 /usr/bin/systemctl reboot
+
+    - name: wait for the reboot to complete
+      pause:
+        seconds: 30
+
+    - name: check that the server is up again
+      ping:

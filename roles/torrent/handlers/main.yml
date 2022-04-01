@@ -1,6 +1,0 @@
----
-- name: "reload {{ torrent_service }}"
-  systemd:
-    name: "{{ torrent_service }}"
-    state: reloaded
-  listen: reload torrent configuration
