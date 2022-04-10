@@ -2,8 +2,12 @@
 - name: Configuring the media server
   hosts: mediaserver
   roles:
-    - base
-    - jellyfin
-    - nas-client
-    - transmission
+    - role: base
+      tags: [base]
+    - role: jellyfin
+      tags: [jellyfin, media]
+    - role: nas-client
+      tags: [nas-client]
+    - role: transmission
+      tags: [transmission, torrent]
 
